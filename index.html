@@ -1,76 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Louis Lin | Electrical Engineering Portfolio</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #24292e; max-width: 850px; margin: 0 auto; padding: 40px 20px; background-color: #fafafa; }
-        header { border-bottom: 2px solid #e1e4e8; padding-bottom: 20px; margin-bottom: 30px; background: #fff; padding: 25px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        h1 { font-size: 2em; color: #111; margin-bottom: 5px; }
-        p.subtitle { color: #586069; font-size: 1.1em; margin-bottom: 15px; }
-        .links a { color: #0366d6; text-decoration: none; font-weight: 600; margin-right: 15px; }
-        .links a:hover { text-decoration: underline; }
-        .section-title { font-size: 1.4em; color: #111; margin: 30px 0 15px 0; padding-bottom: 5px; border-bottom: 1px solid #e1e4e8; }
-        .project-card { background: #fff; border: 1px solid #e1e4e8; border-radius: 8px; padding: 25px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .project-card h3 { font-size: 1.25em; color: #0366d6; margin-bottom: 8px; }
-        .tags { margin-bottom: 15px; }
-        .tag { display: inline-block; background: #f1f8ff; color: #0366d6; border: 1px solid #c8e1ff; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
-        .project-card img { max-width: 100%; height: auto; border-radius: 6px; border: 1px solid #e1e4e8; margin: 15px 0; }
-        .project-card ul { margin-left: 20px; margin-bottom: 15px; }
-        .project-card li { margin-bottom: 6px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Louis — Electrical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F4F0;
+    --paper-dim:#EDECE6;
+    --ink:#16181B;
+    --ink-soft:#585C61;
+    --ink-faint:#8B8E92;
+    --line:#D9D7D0;
+    --trace:#2E8B82;
+    --trace-bright:#3CBFAD;
+    --amber:#D9A441;
+    --amber-dim:#F1E2BC;
+    --radius:2px;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--trace);color:var(--paper);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--trace);outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(245,244,240,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{
+    font-family:var(--mono);font-weight:500;font-size:14px;letter-spacing:0.02em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .led{
+    width:7px;height:7px;border-radius:50%;background:var(--trace);
+    box-shadow:0 0 0 3px rgba(46,139,130,0.15);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.35;}
+  }
+  .navlinks{display:flex;gap:28px;font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;}
+  .navlinks a{color:var(--ink-soft);position:relative;padding-bottom:4px;transition:color .2s;}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a::after{
+    content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--trace);
+    transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  @media (max-width:640px){.navlinks{gap:16px;} .navlinks span.sep{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--trace);margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--trace);}
+  h1.name{
+    font-family:var(--sans);font-weight:700;
+    font-size:clamp(40px,7vw,76px);
+    line-height:1.02;letter-spacing:-0.02em;
+    max-width:900px;
+  }
+  h1.name .accent{color:var(--trace);font-style:normal;}
+  .role{
+    margin-top:20px;font-size:18px;color:var(--ink-soft);max-width:560px;
+  }
+  .blurb{
+    margin-top:14px;font-family:var(--mono);font-size:13.5px;color:var(--ink-faint);max-width:560px;
+  }
+  .waveform{width:100%;height:110px;margin-top:44px;display:block;}
+  .waveform path{
+    fill:none;stroke:var(--trace);stroke-width:1.6;
+    stroke-dasharray:2200;stroke-dashoffset:2200;
+    animation:draw 2.4s cubic-bezier(.4,0,.2,1) forwards .3s;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @media (prefers-reduced-motion:reduce){
+    .waveform path{animation:none;stroke-dashoffset:0;}
+    .led{animation:none;}
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:72px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;gap:20px;flex-wrap:wrap;}
+  .sec-label{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);}
+  h2{font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-0.01em;}
+
+  /* ---------- PROJECTS ---------- */
+  .projects{display:flex;flex-direction:column;gap:28px;}
+  .card{
+    border:1px solid var(--line);
+    background:var(--paper-dim);
+    border-radius:var(--radius);
+    display:grid;grid-template-columns:280px 1fr;
+    overflow:hidden;
+    opacity:0;transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease, border-color .2s ease, box-shadow .2s ease;
+    cursor:pointer;
+  }
+  .card.in{opacity:1;transform:translateY(0);}
+  .card:hover{border-color:var(--trace);box-shadow:0 4px 18px rgba(22,24,27,0.06);}
+  .card:hover h3{color:var(--trace);}
+  .card h3{transition:color .2s ease;}
+  @media (max-width:760px){.card{grid-template-columns:1fr;}}
+  .card-art{
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+    min-height:180px;
+  }
+  .card-art svg{width:100%;height:100%;max-height:150px;}
+  .card-body{padding:28px 32px;}
+  .card-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+  .card-id{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--ink-faint);text-transform:uppercase;}
+  .status{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;
+    background:var(--amber-dim);color:#7A5A18;
+    padding:3px 8px;border-radius:2px;border:1px solid #E4CE8F;
+  }
+  .card h3{font-size:21px;font-weight:700;margin-bottom:10px;}
+  .card p.desc{font-size:14.5px;color:var(--ink-soft);max-width:60ch;margin-bottom:18px;}
+  .spec-row{
+    display:flex;flex-wrap:wrap;gap:10px 26px;
+    border-top:1px dashed var(--line);padding-top:14px;
+  }
+  .spec dt{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-faint);text-transform:uppercase;}
+  .spec dd{font-family:var(--mono);font-size:12.5px;margin-top:2px;}
+
+  /* ---------- STACK ---------- */
+  .stack-grid{display:flex;flex-wrap:wrap;gap:10px;}
+  .tag{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:0.02em;
+    border:1px solid var(--line);padding:8px 14px;border-radius:2px;
+    color:var(--ink-soft);background:var(--paper-dim);
+    transition:border-color .2s, color .2s;
+  }
+  .tag:hover{border-color:var(--trace);color:var(--ink);}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:56px 0 40px;}
+  .contact-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .contact-cta h2{margin-bottom:10px;}
+  .contact-cta p{color:var(--ink-soft);max-width:440px;font-size:15px;}
+  .contact-links{display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+  @media (max-width:600px){.contact-links{align-items:flex-start;}}
+  .contact-links a{
+    font-family:var(--mono);font-size:13px;
+    border-bottom:1px solid var(--line);padding-bottom:2px;
+    transition:border-color .2s, color .2s;
+  }
+  .contact-links a:hover{border-color:var(--trace);color:var(--trace);}
+  .foot-note{
+    margin-top:48px;padding-top:20px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;color:var(--ink-faint);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Louis Lin</h1>
-        <p class="subtitle">Electrical Engineering Student @ UIUC | Embedded Hardware & PCB Design</p>
-        <div class="links">
-            <a href="mailto:contactlouislin@gmail.com">Email</a>
-            <a href="https://github.com/Bobvius" target="_blank">GitHub Profile</a>
-            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-        </div>
-    </header>
-
-    <h2 class="section-title">Hardware & Embedded Projects</h2>
-
-    <div class="project-card">
-        <h3>Gesture-Controlled Bionic Arm</h3>
-        <div class="tags">
-            <span class="tag">KiCad</span>
-            <span class="tag">ESP32-S3</span>
-            <span class="tag">Buck Regulator (AP63203)</span>
-            <span class="tag">Embedded C++</span>
-            <span class="tag">PWM</span>
-        </div>
-        <ul>
-            <li>Architected an electromechanical control system pairing a Python/MediaPipe pipeline with an ESP32-S3 microcontroller to map 21 spatial hand landmarks to multi-axis movement.</li>
-            <li>Designed custom power & protection circuitry integrating an AP63203 buck regulator, USB-C PD with 5.1 kΩ pull-downs, onboard reverse-current protection, and dedicated ESD diodes.</li>
-            <li>Designed and routed a custom 2-layer PCB in KiCad with decoupled motor power supply isolation and signal integrity trace optimization across 6 servo headers.</li>
-        </ul>
-        <!-- Replace 'bionic-arm-pcb.png' with the exact name of the image file you upload to GitHub -->
-        <img src="bionic-arm-pcb.png" alt="Bionic Arm PCB Layout Render">
+<header>
+  <nav class="wrap">
+    <div class="brand"><span class="led"></span>LOUIS.EE</div>
+    <div class="navlinks">
+      <a href="#projects">Projects</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
     </div>
+  </nav>
+</header>
 
-    <div class="project-card">
-        <h3>Telemetry Node Sensor Project</h3>
-        <div class="tags">
-            <span class="tag">STM32 (ARM Cortex-M)</span>
-            <span class="tag">STM32 HAL</span>
-            <span class="tag">LoRa (SPI)</span>
-            <span class="tag">I2C</span>
-            <span class="tag">UART/USART</span>
-        </div>
-        <ul>
-            <li>Architected an end-to-end telemetry system using two STM32 microcontrollers to acquire, package, and transmit real-time environmental data over LoRa to a central hub.</li>
-            <li>Developed low-level C drivers using STM32 HAL for an Adafruit Seesaw sensor board, managing register operations, big-endian reconstruction, and fixed-point data conversions.</li>
-            <li>Resolved hardware edge cases including I2C bus lockups, slave ADC conversion timing delays, and body-capacitance signal degradation.</li>
-        </ul>
-        <!-- Replace 'telemetry-node.png' with your image file name -->
-        <img src="telemetry-node.png" alt="Telemetry Node Block Diagram">
+<section class="hero wrap" style="border-top:none;">
+  <div class="eyebrow">EE · UIUC Grainger College of Engineering</div>
+  <h1 class="name">I build systems that <span class="accent">sense, control, and respond</span>.</h1>
+  <p class="role">Electrical engineering student focused on embedded systems and hardware design. Right now I'm building wireless telemetry and vision-driven control systems.</p>
+  <p class="blurb">Appreciate you clicking in. Recruiter, fellow engineer, friend, or just passing through, hope something here is worth your time.</p>
+
+  <svg class="waveform" viewBox="0 0 1000 110" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,55 L40,55 L55,20 L70,90 L85,10 L100,100 L115,55 L160,55 L175,40 L190,68 L205,55 L260,55 L280,25 L295,85 L310,15 L325,95 L340,55 L400,55 L420,45 L435,62 L450,55 L520,55 L540,18 L555,92 L570,8 L585,98 L600,55 L660,55 L678,42 L693,66 L708,55 L780,55 L800,22 L815,88 L830,12 L845,96 L860,55 L920,55 L935,48 L950,60 L965,55 L1000,55"/>
+  </svg>
+</section>
+
+<section id="projects" style="border-top:none;">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <span class="sec-label">01 — Selected Work</span>
     </div>
+    <div class="projects">
+
+      <a class="card reveal" href="telemetry.html">
+        <div class="card-art">
+          <svg viewBox="0 0 200 150" aria-hidden="true">
+            <rect x="30" y="60" width="45" height="30" rx="2" fill="none" stroke="#3CBFAD" stroke-width="1.4"/>
+            <line x1="75" y1="75" x2="110" y2="75" stroke="#3CBFAD" stroke-width="1.4"/>
+            <circle cx="130" cy="75" r="20" fill="none" stroke="#3CBFAD" stroke-width="1.4"/>
+            <path d="M130,60 L130,90 M115,75 L145,75" stroke="#3CBFAD" stroke-width="1"/>
+            <path d="M150,75 Q160,60 170,75 T190,75" fill="none" stroke="#D9A441" stroke-width="1.4"/>
+            <text x="30" y="112" fill="#8B8E92" font-family="IBM Plex Mono" font-size="8">STM32 · 915MHz LoRa</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-id">Project 01 — Telemetry</span>
+            <span class="status">Active</span>
+          </div>
+          <h3>Bare-Metal Wireless Telemetry System</h3>
+          <p class="desc">A register-level telemetry stack I built on an STM32, talking over I2C and SPI to peripheral sensors and out over 915MHz LoRa. No HAL shortcuts — I configured and debugged every peripheral at the register level, with a logic analyzer confirming timing on the wire.</p>
+        </div>
+      </a>
+
+      <a class="card reveal" href="robotic-hand.html">
+        <div class="card-art">
+          <svg viewBox="0 0 200 150" aria-hidden="true">
+            <path d="M100,20 L100,60" stroke="#3CBFAD" stroke-width="1.4"/>
+            <path d="M100,60 C70,60 60,80 65,110 M100,60 C80,64 75,90 82,115 M100,60 C90,58 90,95 95,120 M100,60 C110,58 112,95 108,120 M100,60 C130,60 138,82 132,112" fill="none" stroke="#3CBFAD" stroke-width="1.3" stroke-linecap="round"/>
+            <rect x="30" y="18" width="26" height="18" rx="2" fill="none" stroke="#D9A441" stroke-width="1.2"/>
+            <path d="M56,27 L100,45" stroke="#D9A441" stroke-width="1" stroke-dasharray="2 2"/>
+            <text x="30" y="140" fill="#8B8E92" font-family="IBM Plex Mono" font-size="8">CV · ESP32 · Servo</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-id">Project 02 — Manipulation</span>
+            <span class="status">Active</span>
+          </div>
+          <h3>Computer Vision-Controlled Robotic Hand</h3>
+          <p class="desc">An InMoov-based robotic hand I'm driving with hand-tracking: a webcam feeds MediaPipe, which maps finger pose to an ESP32 over a PCA9685 PWM driver into five MG996R servos.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Stack</h2>
+      <span class="sec-label">02 — Tools & Skills</span>
+    </div>
+    <div class="stack-grid">
+      <span class="tag">STM32 / Register-Level C</span>
+      <span class="tag">LoRa RF (915MHz)</span>
+      <span class="tag">I2C / SPI</span>
+      <span class="tag">ESP32</span>
+      <span class="tag">MediaPipe / Computer Vision</span>
+      <span class="tag">PCA9685 PWM Control</span>
+      <span class="tag">Logic Analyzer Debugging</span>
+      <span class="tag">Embedded Systems Design</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-cta">
+        <h2>Let's talk hardware.</h2>
+        <p>I'm always down to talk embedded systems, hardware design, or why my desk has four oscilloscopes.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:contactlouislin@gmail.com">contactlouislin@gmail.com</a>
+        <a href="https://github.com/bobvius">github.com/bobvius</a>
+        <a href="https://www.linkedin.com/in/louis-lin-a0a220246/">linkedin.com/in/louis-lin</a>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>© 2026 Louis</span>
+      <span>Urbana-Champaign, IL</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
 
 </body>
 </html>
