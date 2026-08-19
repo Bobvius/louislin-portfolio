@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture-Controlled Bionic Arm | Louis Lin</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: #1d1d1f; background: #fff; }
+        
+        /* Navigation */
+        nav { max-width: 1000px; margin: 0 auto; padding: 20px; font-weight: 500; }
+        nav a { color: #0066cc; text-decoration: none; }
+
+        /* Hero Header */
+        .hero { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; color: #6e6e73; max-width: 700px; }
+        
+        /* Main Grid (Specs Sidebar + Technical Content) */
+        .project-grid { max-width: 1000px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 280px 1fr; gap: 40px; }
+        
+        /* Sidebar Metadata */
+        .sidebar { border-top: 2px solid #1d1d1f; padding-top: 15px; }
+        .meta-group { margin-bottom: 20px; }
+        .meta-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #86868b; letter-spacing: 0.5px; }
+        .meta-value { font-size: 0.95rem; font-weight: 500; color: #1d1d1f; margin-top: 4px; }
+        .tag { display: inline-block; background: #f2f2f7; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem; margin: 2px; }
+
+        /* Content Area */
+        .content section { margin-bottom: 50px; }
+        .content h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; border-bottom: 1px solid #e5e5ea; padding-bottom: 8px; }
+        .content p { margin-bottom: 15px; color: #3a3a3c; }
+        
+        /* Media & Image Callouts */
+        .media-container { margin: 25px 0; background: #f5f5f7; border-radius: 8px; overflow: hidden; border: 1px solid #e5e5ea; }
+        .media-container img { width: 100%; height: auto; display: block; }
+        .caption { padding: 10px 15px; font-size: 0.85rem; color: #6e6e73; text-align: center; background: #fafafa; border-top: 1px solid #e5e5ea; }
+
+        /* Responsive Fix for Mobile */
+        @media (max-width: 768px) {
+            .project-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav><a href="index.html">&larr; Back to Portfolio</a></nav>
+
+    <header class="hero">
+        <h1>Gesture-Controlled Bionic Arm</h1>
+        <p>Custom 2-layer PCB design, low-level ESP32-S3 firmware, and computer vision hand-tracking pipeline.</p>
+    </header>
+
+    <main class="project-grid">
+        <!-- Sidebar Metadata Column -->
+        <aside class="sidebar">
+            <div class="meta-group">
+                <div class="meta-title">Role</div>
+                <div class="meta-value">Lead Hardware & Embedded Engineer</div>
+            </div>
+            <div class="meta-group">
+                <div class="meta-title">Timeline</div>
+                <div class="meta-value">Fall 2025 – Present</div>
+            </div>
+            <div class="meta-group">
+                <div class="meta-title">Tools & Tools</div>
+                <div class="meta-value">
+                    <span class="tag">KiCad</span>
+                    <span class="tag">ESP32-S3</span>
+                    <span class="tag">Embedded C++</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">PSpice</span>
+                </div>
+            </div>
+            <div class="meta-group">
+                <div class="meta-title">Key Components</div>
+                <div class="meta-value">AP63203 Buck Converter, USBLC6-2SC6 ESD Protection</div>
+            </div>
+        </aside>
+
+        <!-- Main Engineering Content Column -->
+        <article class="content">
+            
+            <section>
+                <h2>Project Overview</h2>
+                <p>Designed an end-to-end electromechanical bionic hand capable of real-time spatial tracking. The system captures 21 hand landmarks via a Python/MediaPipe vision pipeline and streams coordinate data over UART to an ESP32-S3 microcontroller executing real-time PWM actuation.</p>
+                
+                <div class="media-container">
+                    <!-- Upload your PCB render or CAD assembly image -->
+                    <img src="bionic-arm-render.png" alt="KiCad 3D Render">
+                    <div class="caption">Figure 1: Custom 2-layer PCB layout rendered in KiCad with isolated power plane routing.</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Power Electronics & Protection</h2>
+                <p>To prevent motor inductive spikes from resetting the ESP32 logic, I designed dedicated power regulation and input protection directly onto the PCB:</p>
+                <ul>
+                    <li><strong>AP63203 Buck Regulator:</strong> Stepped down 12V DC input to a stable 5V rail for 6 high-torque servos.</li>
+                    <li><strong>ESD & Reverse Protection:</strong> Integrated <code>USBLC6-2SC6</code> diodes on native USB-C lines and 5.1kΩ CC pull-downs for standard PD configuration.</li>
+                </ul>
+
+                <div class="media-container">
+                    <!-- Upload your schematic screenshot -->
+                    <img src="schematic-power.png" alt="Power Circuit Schematic">
+                    <div class="caption">Figure 2: Power supply schematic featuring step-down regulation and decoupling capacitors.</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Firmware & Testing</h2>
+                <p>Developed low-level C++ firmware utilizing FreeRTOS tasks to parse incoming coordinate payloads via I²C master-slave communication and compute real-time duty cycle adjustments under sub-millisecond latency.</p>
+            </section>
+
+        </article>
+    </main>
+
+</body>
+</html>
