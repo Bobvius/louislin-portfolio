@@ -65,6 +65,52 @@
   .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0;}
   @media (max-width:700px){.media-grid{grid-template-columns:1fr;}}
 
+  /* Clickable Image Zoom Effects */
+  .media-slot img {
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .media-slot img:hover {
+    opacity: 0.9;
+    transform: scale(1.01);
+  }
+
+  /* Fullscreen Image Modal */
+  .img-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 12, 14, 0.92);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .img-modal.active {
+    display: flex;
+  }
+  .img-modal img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .img-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 28px;
+    cursor: pointer;
+    user-select: none;
+  }
+
   .proj-nav{padding:32px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:13px;}
   .proj-nav a{border-bottom:1px solid var(--line);padding-bottom:2px;color:var(--ink-soft);transition:border-color .2s, color .2s;}
   .proj-nav a:hover{border-color:var(--trace);color:var(--trace);}
@@ -132,7 +178,7 @@
 
     <!-- BREADBOARD PROTOTYPE MEDIA SLOT -->
     <div class="media-slot">
-      <img src="assets/images/breadboard-prototype.jpg" alt="Initial breadboard circuit setup prototyping the ESP32, PCA9685, and servo power rail">
+      <img src="assets/images/breadboard-prototype.png" alt="Initial breadboard circuit setup prototyping the ESP32, PCA9685, and servo power rail">
     </div>
     <p class="media-caption">FIG 1.1 — Phase 1 Bring-Up: Early breadboard prototyping to validate signal routing, I2C logic, and multi-servo current demands before PCB layout.</p>
 
@@ -162,13 +208,13 @@
     <div class="media-grid">
       <div>
         <div class="media-slot">
-          <img src="assets/images/pcb-in-hand.jpg" alt="Manufactured PCB held in hand after surface-mount assembly and component verification">
+          <img src="assets/images/pcb-in-hand.JPEG" alt="Manufactured PCB held in hand after surface-mount assembly and component verification">
         </div>
         <p class="media-caption">FIG 1.4 — Custom Controller: Assembled custom ESP32-S3 control board post-manufacture and verification.</p>
       </div>
       <div>
         <div class="media-slot">
-          <img src="assets/images/robotic-hand-assembly.jpg" alt="Fully assembled articulated robotic hand with mechanical linkages and servo mounting">
+          <img src="assets/images/robotic-hand-assembly.png" alt="Fully assembled articulated robotic hand with mechanical linkages and servo mounting">
         </div>
         <p class="media-caption">FIG 1.5 — Physical Integration: Fully assembled bionic arm chassis with servo tendon linkages and mechanical mounts.</p>
       </div>
@@ -214,6 +260,34 @@
     </div>
   </div>
 </footer>
+
+<!-- Lightbox Modal -->
+<div id="imageModal" class="img-modal" onclick="closeModal()">
+  <span class="img-modal-close">&times;</span>
+  <img id="modalImg" src="" alt="Expanded View">
+</div>
+
+<script>
+  // Click listener for all image thumbnails
+  document.querySelectorAll('.media-slot img').forEach(img => {
+    img.addEventListener('click', () => {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = img.src;
+      modal.classList.add('active');
+    });
+  });
+
+  // Close modal function
+  function closeModal() {
+    document.getElementById('imageModal').classList.remove('active');
+  }
+
+  // Close on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
 
 </body>
 </html>
