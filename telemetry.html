@@ -151,27 +151,27 @@
 
     <!-- HERO SYSTEM MEDIA SLOT -->
     <div class="media-slot" style="margin: 24px 0;">
-      <img src="assets/images/telemetry-hero-system.png" alt="Complete STM32 LoRa wireless telemetry node and hub gateway system on test bench">
+      <img src="assets/images/telemetry-hero-system.jpeg" alt="Complete STM32 LoRa wireless telemetry node and hub gateway system on test bench">
     </div>
     <p class="media-caption">FIG 1.0 — System Overview: Dual STM32 node configuration sampling soil telemetry over I2C and routing sub-GHz payloads over 915MHz LoRa RF to gateway UART log.</p>
 
     <h2>Phase 1: Sensor Interfacing & Driver Engineering</h2>
-    <p>Sensor data acquisition is handled through an Adafruit Seesaw coprocessor over I2C. Developing bare-metal C drivers required extracting 32-bit big-endian register values, handling bitwise byte order reconstruction, and scaling raw capacitive measurements into standard physical units.</p>
+    <p>Sensor data acquisition is handled through an Adafruit Seesaw coprocessor over I2C on the primary edge node. Developing bare-metal C drivers required extracting 32-bit big-endian register values, handling bitwise byte order reconstruction, and scaling raw capacitive measurements into standard physical units.</p>
 
     <div class="media-slot">
-      <img src="assets/images/telemetry-sensor-wiring.png" alt="Close-up of STM32 MCU wired to capacitive soil sensor over I2C lines">
+      <img src="assets/images/telemetry-sensor-wiring.jpeg" alt="Close-up of STM32 sensor edge node wired to capacitive soil sensor over I2C lines">
     </div>
-    <p class="media-caption">FIG 1.1 — Hardware Interface: I2C wiring between STM32 and sensor coprocessor, including pull-up verification and logic probing.</p>
+    <p class="media-caption">FIG 1.1 — Edge Sensor Node: I2C wiring between the primary STM32 node and the capacitive sensor coprocessor, including pull-up resistor verification and logic probing.</p>
 
     <h2>Phase 2: RF Communication & Payload Routing</h2>
-    <p>To extend communications far past short-range limitations, raw telemetry buffers are serialized and passed over high-speed SPI to a 915MHz LoRa transceiver. The remote gateway node receives the sub-GHz payload, unpacks the data string, and streams live diagnostic logs directly over UART to the host workstation console at 115200 Baud.</p>
+    <p>To extend communications far past short-range limitations, raw telemetry buffers are serialized and passed over high-speed SPI to a 915MHz LoRa transceiver. The receiving central gateway hub captures the sub-GHz payload, unpacks the data string, and streams live diagnostic logs directly over UART to the host workstation console at 115200 Baud.</p>
 
     <div class="media-grid">
       <div>
         <div class="media-slot">
-          <img src="assets/images/telemetry-nodes-setup.png" alt="Dual STM32 board setup showing edge sensor node and receiving central gateway node">
+          <img src="assets/images/telemetry-nodes-setup.jpeg" alt="Central hub gateway setup with STM32 board and LoRa transceiver receiver module">
         </div>
-        <p class="media-caption">FIG 1.2 — System Setup: Dual STM32 node configuration running bare-metal LoRa transmitter and receiver firmware.</p>
+        <p class="media-caption">FIG 1.2 — Central Hub Gateway: Receiving node running bare-metal LoRa receiver firmware and UART serial logging setup.</p>
       </div>
       <div>
         <div class="media-slot">
