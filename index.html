@@ -124,29 +124,35 @@
   .card:hover h3{color:var(--trace);}
   .card h3{transition:color .2s ease;}
   @media (max-width:760px){.card{grid-template-columns:1fr;}}
+  
+  /* Updated Card Art to hold responsive image banners */
   .card-art{
     background:var(--ink);
-    display:flex;align-items:center;justify-content:center;
-    padding:20px;
+    overflow:hidden;
     min-height:180px;
+    display:flex;
   }
-  .card-art svg{width:100%;height:100%;max-height:150px;}
+  .card-art img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform 0.3s ease;
+  }
+  .card:hover .card-art img{
+    transform:scale(1.03);
+  }
+
   .card-body{padding:28px 32px;}
   .card-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
   .card-id{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--ink-faint);text-transform:uppercase;}
   .status{
     font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;
-    background:var(--amber-dim);color:#7A5A18;
-    padding:3px 8px;border-radius:2px;border:1px solid #E4CE8F;
+    background:#D2E9E1;color:#1B5E55;
+    padding:3px 8px;border-radius:2px;border:1px solid #A3D4C5;
   }
   .card h3{font-size:21px;font-weight:700;margin-bottom:10px;}
   .card p.desc{font-size:14.5px;color:var(--ink-soft);max-width:60ch;margin-bottom:18px;}
-  .spec-row{
-    display:flex;flex-wrap:wrap;gap:10px 26px;
-    border-top:1px dashed var(--line);padding-top:14px;
-  }
-  .spec dt{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-faint);text-transform:uppercase;}
-  .spec dd{font-family:var(--mono);font-size:12.5px;margin-top:2px;}
 
   /* ---------- STACK ---------- */
   .stack-grid{display:flex;flex-wrap:wrap;gap:10px;}
@@ -213,41 +219,30 @@
     </div>
     <div class="projects">
 
+      <!-- PROJECT 01 -->
       <a class="card reveal" href="telemetry.html">
         <div class="card-art">
-          <svg viewBox="0 0 200 150" aria-hidden="true">
-            <rect x="30" y="60" width="45" height="30" rx="2" fill="none" stroke="#3CBFAD" stroke-width="1.4"/>
-            <line x1="75" y1="75" x2="110" y2="75" stroke="#3CBFAD" stroke-width="1.4"/>
-            <circle cx="130" cy="75" r="20" fill="none" stroke="#3CBFAD" stroke-width="1.4"/>
-            <path d="M130,60 L130,90 M115,75 L145,75" stroke="#3CBFAD" stroke-width="1"/>
-            <path d="M150,75 Q160,60 170,75 T190,75" fill="none" stroke="#D9A441" stroke-width="1.4"/>
-            <text x="30" y="112" fill="#8B8E92" font-family="IBM Plex Mono" font-size="8">STM32 · 915MHz LoRa</text>
-          </svg>
+          <img src="assets/images/telemetry-hero-system.JPEG" alt="Wireless Telemetry System Hardware Banner">
         </div>
         <div class="card-body">
           <div class="card-top">
             <span class="card-id">Project 01 — Telemetry</span>
-            <span class="status">Active</span>
+            <span class="status">Completed</span>
           </div>
           <h3>Bare-Metal Wireless Telemetry System</h3>
           <p class="desc">A register-level telemetry stack I built on an STM32, talking over I2C and SPI to peripheral sensors and out over 915MHz LoRa. No HAL shortcuts — I configured and debugged every peripheral at the register level, with a logic analyzer confirming timing on the wire.</p>
         </div>
       </a>
 
+      <!-- PROJECT 02 -->
       <a class="card reveal" href="robotic-hand.html">
         <div class="card-art">
-          <svg viewBox="0 0 200 150" aria-hidden="true">
-            <path d="M100,20 L100,60" stroke="#3CBFAD" stroke-width="1.4"/>
-            <path d="M100,60 C70,60 60,80 65,110 M100,60 C80,64 75,90 82,115 M100,60 C90,58 90,95 95,120 M100,60 C110,58 112,95 108,120 M100,60 C130,60 138,82 132,112" fill="none" stroke="#3CBFAD" stroke-width="1.3" stroke-linecap="round"/>
-            <rect x="30" y="18" width="26" height="18" rx="2" fill="none" stroke="#D9A441" stroke-width="1.2"/>
-            <path d="M56,27 L100,45" stroke="#D9A441" stroke-width="1" stroke-dasharray="2 2"/>
-            <text x="30" y="140" fill="#8B8E92" font-family="IBM Plex Mono" font-size="8">CV · ESP32 · Servo</text>
-          </svg>
+          <img src="assets/images/bionic-arm-banner.JPEG" alt="Computer Vision-Controlled Robotic Hand Hardware Banner">
         </div>
         <div class="card-body">
           <div class="card-top">
             <span class="card-id">Project 02 — Manipulation</span>
-            <span class="status">Active</span>
+            <span class="status">Completed</span>
           </div>
           <h3>Computer Vision-Controlled Robotic Hand</h3>
           <p class="desc">An InMoov-based robotic hand I'm driving with hand-tracking: a webcam feeds MediaPipe, which maps finger pose to an ESP32 over a PCA9685 PWM driver into five MG996R servos.</p>
