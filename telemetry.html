@@ -62,10 +62,6 @@
   .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0;}
   @media (max-width:700px){.media-grid{grid-template-columns:1fr;}}
 
-  /* Vector Diagram Box */
-  .art-block{background:var(--ink);border-radius:var(--radius);padding:40px;margin:24px 0;display:flex;align-items:center;justify-content:center;}
-  .art-block svg{width:100%;max-width:520px;height:auto;}
-
   /* Clickable Image Zoom Effects */
   .media-slot img {
     cursor: pointer;
@@ -153,23 +149,11 @@
     
     <p>This project is a bare-metal wireless telemetry system built on STM32 microcontrollers. The edge node samples soil moisture and temperature over I2C, packages the payload, and transmits telemetry over a sub-GHz LoRa RF link to a central gateway hub, which streams real-time diagnostic logs to a workstation terminal via UART.</p>
 
-    <!-- ARCHITECTURE VECTOR DIAGRAM -->
-    <div class="art-block">
-      <svg viewBox="0 0 400 220" aria-hidden="true">
-        <rect x="60" y="90" width="90" height="60" rx="3" fill="none" stroke="#3CBFAD" stroke-width="1.6"/>
-        <text x="72" y="124" fill="#3CBFAD" font-family="IBM Plex Mono" font-size="11">STM32</text>
-        <line x1="150" y1="120" x2="210" y2="120" stroke="#3CBFAD" stroke-width="1.6"/>
-        <text x="155" y="112" fill="#8B8E92" font-family="IBM Plex Mono" font-size="8">I2C / SPI</text>
-        <circle cx="250" cy="120" r="38" fill="none" stroke="#3CBFAD" stroke-width="1.6"/>
-        <path d="M250,82 L250,158 M212,120 L288,120" stroke="#3CBFAD" stroke-width="1"/>
-        <text x="228" y="176" fill="#8B8E92" font-family="IBM Plex Mono" font-size="8">RF Front End</text>
-        <path d="M288,120 Q310,95 332,120 T376,120" fill="none" stroke="#D9A441" stroke-width="1.6"/>
-        <path d="M288,110 Q305,90 320,110" fill="none" stroke="#D9A441" stroke-width="1" opacity="0.5"/>
-        <path d="M288,130 Q305,150 320,130" fill="none" stroke="#D9A441" stroke-width="1" opacity="0.5"/>
-        <text x="330" y="145" fill="#8B8E92" font-family="IBM Plex Mono" font-size="8">915MHz</text>
-      </svg>
+    <!-- HERO SYSTEM MEDIA SLOT -->
+    <div class="media-slot" style="margin: 24px 0;">
+      <img src="assets/images/telemetry-hero-system.png" alt="Complete STM32 LoRa wireless telemetry node and hub gateway system on test bench">
     </div>
-    <p class="media-caption">FIG 1.0 — Architecture Topology: Low-level data acquisition over I2C/SPI transferred across sub-GHz 915MHz LoRa RF front-end.</p>
+    <p class="media-caption">FIG 1.0 — System Overview: Dual STM32 node configuration sampling soil telemetry over I2C and routing sub-GHz payloads over 915MHz LoRa RF to gateway UART log.</p>
 
     <h2>Phase 1: Sensor Interfacing & Driver Engineering</h2>
     <p>Sensor data acquisition is handled through an Adafruit Seesaw coprocessor over I2C. Developing bare-metal C drivers required extracting 32-bit big-endian register values, handling bitwise byte order reconstruction, and scaling raw capacitive measurements into standard physical units.</p>
@@ -187,13 +171,16 @@
         <div class="media-slot">
           <img src="assets/images/telemetry-nodes-setup.png" alt="Dual STM32 board setup showing edge sensor node and receiving central gateway node">
         </div>
-        <p class="media-caption">FIG 1.2 — System Overview: Dual STM32 node configuration running bare-metal LoRa transmitter and receiver firmware.</p>
+        <p class="media-caption">FIG 1.2 — System Setup: Dual STM32 node configuration running bare-metal LoRa transmitter and receiver firmware.</p>
       </div>
       <div>
         <div class="media-slot">
-          <img src="assets/images/telemetry-console-log.png" alt="Live IDE terminal console showing real-time moisture and temperature logs received over LoRa">
+          <video autoplay loop muted playsinline controls>
+            <source src="assets/videos/telemetry-console-demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
-        <p class="media-caption">FIG 1.3 — Telemetry Stream: Real-time console logs outputting live moisture indices and temperature data from distant edge node.</p>
+        <p class="media-caption">FIG 1.3 — Live Telemetry Stream: Console log updating in real time, demonstrating dynamic capacitance jumps as physical contact with the sensor blade alters the payload on each LoRa pulse.</p>
       </div>
     </div>
 
