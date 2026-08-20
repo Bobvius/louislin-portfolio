@@ -125,7 +125,6 @@
   .card h3{transition:color .2s ease;}
   @media (max-width:760px){.card{grid-template-columns:1fr;}}
   
-  /* Updated Card Art to hold responsive image banners */
   .card-art{
     background:var(--ink);
     overflow:hidden;
@@ -229,8 +228,8 @@
             <span class="card-id">Project 01 — Telemetry</span>
             <span class="status">Completed</span>
           </div>
-          <h3>Bare-Metal Wireless Telemetry System</h3>
-          <p class="desc">A register-level telemetry stack I built on an STM32, talking over I2C and SPI to peripheral sensors and out over 915MHz LoRa. No HAL shortcuts — I configured and debugged every peripheral at the register level, with a logic analyzer confirming timing on the wire.</p>
+          <h3>STM32 Wireless Telemetry Node</h3>
+          <p class="desc">STM32-based wireless telemetry node designed to sample environmental sensors over I2C/SPI and transmit packetized data across a 915MHz LoRa link to a central gateway hub. Developed using the STM32 HAL in STM32CubeIDE, with bus communication and packet timing verified directly on the wire using a logic analyzer.</p>
         </div>
       </a>
 
@@ -260,7 +259,7 @@
       <span class="sec-label">02 — Tools & Skills</span>
     </div>
     <div class="stack-grid">
-      <span class="tag">STM32 / Register-Level C</span>
+      <span class="tag">STM32 HAL / STM32CubeIDE</span>
       <span class="tag">LoRa RF (915MHz)</span>
       <span class="tag">I2C / SPI</span>
       <span class="tag">ESP32</span>
