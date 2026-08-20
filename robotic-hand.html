@@ -201,8 +201,10 @@
       </div>
     </div>
 
-    <h2>Phase 3: Hardware Bring-Up & Diagnostics</h2>
-    <p>The hardware interface includes 5.1kΩ CC pull-downs for USB-PD negotiation, USBLC6-2SC6 ESD protection across USB data lines, and reverse-voltage diode isolation. SMT components were matched to JLCPCB basic library parts for automated assembly. Board bring-up involved validating power rail stability under dynamic motor load, probing PWM outputs on an oscilloscope, and isolating bootloader strapping-pin constraints (IO0/JP1 trace cut).</p>
+   <h2>Phase 3: Robust Power Integrity & Hardware Bring-Up</h2>
+<p>To ensure system survival under heavy inductive motor loads, the hardware features an engineered reverse-current protection stage. High-side Schottky protection and bulk decoupling capacitors suppress massive back-EMF voltage spikes generated during sudden multi-servo action, isolating sensitive ESP32 logic from power-rail collapse.</p>
+
+<p>Hardware testing exposed critical edge cases under physical load, particularly servo stalling caused by missing software motion bounds. Implementing strict minimum and maximum angle limits prevented motors from over-rotating past mechanical stops, reducing stall current and protecting current-sense components. Additional bring-up work involved diagnosing bootloader strapping-pin contention by cutting and rerouting the IO0 and JP1 trace constraint to ensure clean cold boots.</p>
 
     <!-- PHYSICAL PCB IN HAND & ASSEMBLED ROBOT MEDIA GRID -->
     <div class="media-grid">
